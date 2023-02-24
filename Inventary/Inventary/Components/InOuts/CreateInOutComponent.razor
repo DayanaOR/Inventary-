@@ -1,0 +1,46 @@
+﻿@using Entities
+@using Business
+
+<div class="form-group">
+    <select class="form-control" @onchange="OnChangedWareHouse">
+        <option value="">
+            Seleccione una bodega..
+        </option>
+        @foreach (var WareHouse in warehouses)
+        {
+            <option value="@WareHouse.WarehouseId">@WareHouse.WarehouseName</option>
+        }
+    </select>
+</div>
+ <hr />
+    <EditForm Model="oInOut">
+        <div class="form-group">
+            <InputSelect class="form-control" @bind-Value="oInOut.StorageId">
+                <option value="">
+                    Seleccione una producto..
+                </option>
+                @foreach (var storage in storages)
+                {
+                    <option value="@storage.StorageId">@storage.Product.ProductName</option>
+                }
+            </InputSelect>
+        </div>
+    </EditForm>
+
+@code {
+    InputOutputEntity oInOut = new InputOutputEntity();
+
+    List<WarehouseEntity> warehouses = new List<WarehouseEntity>();
+    List<StorageEntity> storages = new List<StorageEntity>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        warehouses = B_Warehouse.WareHouseList();
+    }
+
+    private void OnChangedWareHouse(ChangeEventArgs e)
+    {
+        var idWareHouse = e.Value.ToString();
+        storages = B_Storage.StorageProductsByWareHouse(idWareHouse);
+    }
+}

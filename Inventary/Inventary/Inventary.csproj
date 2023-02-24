@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Components\Ejercicios\NewFolder2\**" />
+    <Compile Remove="Components\Ejercicios\NewFolder\**" />
+    <Content Remove="Components\Ejercicios\NewFolder2\**" />
+    <Content Remove="Components\Ejercicios\NewFolder\**" />
+    <EmbeddedResource Remove="Components\Ejercicios\NewFolder2\**" />
+    <EmbeddedResource Remove="Components\Ejercicios\NewFolder\**" />
+    <None Remove="Components\Ejercicios\NewFolder2\**" />
+    <None Remove="Components\Ejercicios\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Business\Business.csproj" />
+    <ProjectReference Include="..\Entities\Entities.csproj" />
+  </ItemGroup>
+
+</Project>
